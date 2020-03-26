@@ -1,0 +1,19 @@
+<a class="btn btn-danger" routerLink="/admin/article-new">+</a>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Title</th>
+    <th scope="col">Created On</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let article of articleList">
+    <th scope="row">
+      <a href="#" [routerLink]="['/article', article.id]">
+        {{ article.title }}
+      </a>
+    </th>
+    <td>{{ article.createdAt | date: 'dd-MM-yyyy HH:mm' }}</td>
+  </tr>
+  </tbody>
+</table>

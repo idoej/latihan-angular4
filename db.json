@@ -1,0 +1,27 @@
+{
+  "auth": {
+    "username": "admin",
+    "password": "secret",
+    "token": "asd@*$&V(WMUE(!*$&V(N@!"
+  },
+  "articles": [
+    {
+      "title": "asd",
+      "body": "qwe",
+      "createdAt": "2020-03-26T11:03:31.784Z",
+      "id": 1
+    },
+    {
+      "title": "afqwe",
+      "body": "fzxcxc",
+      "createdAt": "2020-03-26T11:03:51.598Z",
+      "id": 2
+    },
+    {
+      "title": "qwe",
+      "body": "asd",
+      "createdAt": "2020-03-26T11:05:29.411Z",
+      "id": 3
+    }
+  ]
+}
