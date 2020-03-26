@@ -9,11 +9,48 @@ import {Article} from '../../../model/article';
 })
 export class ArticleListComponent implements OnInit {
   articleList: Article[] = [];
+  page = 1;
+  next = false;
+  sort = 'title';
+  asc = true;
 
   constructor(private articleService: ArticleService) { }
-
-  ngOnInit(): void {
-    this.articleService.list().then(data => this.articleList = data);
+  private fetchData() {
+    this.articleService.list(this.page, this.sort, this.asc ? 'asc' : 'desc')
+      .then(data => {
+        this.articleList = data;
+        if (this.next && this.articleList.length === 0 && this.page > 1) { // retry with previous page
+          this.page--;
+          this.fetchData();
+        }
+        this.next = false;
+      });
   }
 
+  ngOnInit(): void {
+    this.fetchData();
+  }
+
+  nextPage() {
+    this.page++; // json server does not have count endpoint, so...whatever
+    this.next = true;
+    this.fetchData();
+  }
+
+  prevPage() {
+    this.page = Math.max(1, this.page - 1);
+    this.fetchData();
+  }
+
+  sortTitle() {
+    this.sort = 'title';
+    this.asc = !this.asc;
+    this.fetchData();
+  }
+
+  sortCreatedAt() {
+    this.sort = 'createdAt';
+    this.asc = !this.asc;
+    this.fetchData();
+  }
 }

@@ -10,8 +10,10 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  async list() {
-    return await this.http.get<Article[]>(BASE_URL + '/articles').toPromise();
+  async list(page: number, sort: string, order: string) {
+    return await this.http.get<Article[]>(BASE_URL + '/articles?_page=' + page + '&_sort=' + sort + '&_order=' + order)
+      .pipe()
+      .toPromise();
   }
 
   async get(id: string) {
